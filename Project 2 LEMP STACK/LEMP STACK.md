@@ -2,7 +2,7 @@
 
 Update the 'apt' package manager.
 
-[Link to Step 1](#step-1)
+
 
 sudo apt update
 
