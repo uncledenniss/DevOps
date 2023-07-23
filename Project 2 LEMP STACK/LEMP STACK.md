@@ -1,3 +1,5 @@
+#Step 1:
+
 Update the 'apt' package manager.
 
 sudo apt update
