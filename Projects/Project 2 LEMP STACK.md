@@ -147,7 +147,7 @@ nano /var/www/projectLEMP/todo_list.php
 ```
 
 
-### LINK TO  ![IMAGE FOLDER](../Images/Project-2-LEMP-STACK)
+#### LINK TO  ![IMAGE FOLDER](../Images/Project-2-LEMP-STACK)
 
 
 
