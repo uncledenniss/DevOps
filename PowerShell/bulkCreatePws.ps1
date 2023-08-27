@@ -23,7 +23,7 @@ $NewGroup = New-AzureADGroup -DisplayName $GroupName -MailNickname $MailNickname
 $GroupObjectId = $NewGroup.ObjectId
 
 # Prompt the user for the log file path
-$LogFilePath = Read-Host "Enter the log file path (e.g., C:\Users\file\log\path\VaronisAssignmentGroup.log)"
+$LogFilePath = Read-Host "Enter the log file path (e.g., C:\Users\file\log\path\myGroupFolder.log)"
 
 $LogMessageFormat = "{0} - {1} - {2}"
 
