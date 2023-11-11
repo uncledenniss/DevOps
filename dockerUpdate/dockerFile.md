@@ -220,16 +220,125 @@ docker swarm update --cert-expiry 72h
 ![Image](gitDocker/image40.png)
 
 
+```
+docker network ls
+docker network inspect bridge
+docker port webapp1
+docker network create -d bridge third-mainland
+docker container run --rm -d --network third-mainland nginx
+docker network create -d overlay newSpectranet
+docker service create -d --name telepath --replicas 2 --network newSpectranet alpine
+docker service ls
+```
+
+![Image](gitDocker/image41.png)
+
+![Image](gitDocker/image42.png)
+
+![Image](gitDocker/image43.png)
+
+![Image](gitDocker/image44.png)
+
+
+
+```
+docker volume ls
+docker volume create myVol
+docker volume inspect myVol
+sudo ls -l /var/lib/docker/volumes
+docker container run -dit --name volTest --mount source=ubervol,target=/vol alpine:latest
+docker container exec -it volTest sh
+echo "newBalance" > /vol/newfile
+cat /vol/newfile
+exit
+sudo cat /var/lib/docker/volumes/ubervol/_data/newfile
+docker container rm volTest -f
+docker volume ls
+```
+
+![Image](gitDocker/image45.png)
+
+![Image](gitDocker/image46.png)
+
+![Image](gitDocker/image47.png)
+
+![Image](gitDocker/image48.png)
+
+![Image](gitDocker/image49.png)
+
+![Image](gitDocker/image51.png)
+
+
+
+```
+echo "passkey123" > secret.txt
+cat secret.txt
+docker secret create secret.txt
+docker secret ls
+docker secret inspect newsec
+docker service create -d --name secret-service \
+--secret newsec nginx:latest
+docker service inspect secret-service
+docker container ls
+docker container exec -it d6ff nginx
+curl -o stackfile.yml \
+https://raw.githubusercontent.com/dockersamples/example-voting-app/main/docker-stack.yml
+cat stackfile.yml
+```
+
+![Image](gitDocker/image52.png)
+
+![Image](gitDocker/image53.png)
+
+![Image](gitDocker/image54.png)
+
+![Image](gitDocker/image55.png)
+
+![Image](gitDocker/image56.png)
+
+![Image](gitDocker/image57.png)
+
+![Image](gitDocker/image58.png)
+
+![Image](gitDocker/image59.png)
+
+
+
+```
+docker stack deploy -c stackfile.yml inec
+docker stack ls
+docker stack ps inec
+sudo lsof -i :5000
+docker stack services inec
+docker service scale inec_vote=20
+docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}"
+```
+
+![Image](gitDocker/image60.png)
+
+![Image](gitDocker/image61.png)
+
+![Image](gitDocker/image62.png)
+
+![Image](gitDocker/image63.png)
+
+![Image](gitDocker/image64.png)
+
+![Image](gitDocker/image65.png)
+
+
+```
 docker diff {CONTAINER_ID_OR_NAME}		- used to access the diff files 
 docker history redis:latest			- used to check image 
- 
 mkdir /tmp/image-layers				- used to create tmp dir
 docker save -o /tmp/image.tar redis:latest	- used to create a tarball of image
 tar -xf /tmp/image.tar -C /tmp/image-layers	- extract content of tarball and cp to image-layer
 cd /tmp/image-layers				- change directory to image-layer
 ls -al						- list diff content
- 
+docker stop <container_id>			- stop container
+docker rm <container_id>			- remove container 
 docker image rm redis				- delete image
+```
 
 ![Image](gitDocker/image10.png)
 
@@ -237,8 +346,7 @@ docker image rm redis				- delete image
  
 
  
-docker stop <container_id>			- stop container
-docker rm <container_id>			- remove container
+
  
 
  
